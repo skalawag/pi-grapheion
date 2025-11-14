@@ -20,12 +20,12 @@ This tool extracts text from TEI XML files from the Perseus Digital Library and 
 ## Installation
 
 ```bash
-# Clone repository with Perseus corpus submodule
-git clone --recurse-submodules <repository-url>
-cd perseus
+# Clone this repository
+git clone <repository-url>
+cd pi-grapheion
 
-# Or if already cloned, initialize submodule
-git submodule update --init --recursive
+# Clone the Perseus Digital Library corpus (MUST be at project root)
+git clone https://github.com/PerseusDL/canonical-greekLit.git
 
 # Create and activate virtual environment
 python -m venv .venv
@@ -36,6 +36,11 @@ source .venv/bin/activate  # On Linux/Mac
 # Install with development dependencies
 pip install -e ".[dev]"
 ```
+
+**Important**:
+- The `canonical-greekLit` directory **must** be located at the project root (same level as `pi_grapheion/`)
+- It contains ~99 authors and 818 works (several hundred MB of data)
+- The tool expects to find it at `./canonical-greekLit/data/`
 
 ## Quick Start
 
@@ -262,7 +267,7 @@ pi-grapheion/
 │   ├── test_style_validation.py
 │   ├── test_stephanus_formatting.py
 │   └── fixtures/        # Test XML samples
-├── canonical-greekLit/  # Perseus corpus (git submodule)
+├── canonical-greekLit/  # Perseus corpus (separate git clone)
 │   └── data/
 │       ├── tlg0059/     # Plato (36 works)
 │       ├── tlg0003/     # Thucydides
@@ -406,9 +411,11 @@ Perseus TLG format: `tlg####.tlg###`
 
 ## Troubleshooting
 
-### Submodule not initialized
+### Perseus corpus not found
 ```bash
-git submodule update --init --recursive
+# Make sure canonical-greekLit is cloned in the project directory
+cd pi-grapheion
+git clone https://github.com/PerseusDL/canonical-greekLit.git
 ```
 
 ### Virtual environment issues
@@ -423,8 +430,11 @@ pip install -e ".[dev]"
 
 ### Test failures
 ```bash
-# Ensure submodule is present
+# Ensure Perseus corpus is present
 ls canonical-greekLit/data/tlg0059/tlg001/
+
+# If missing, clone it
+git clone https://github.com/PerseusDL/canonical-greekLit.git
 
 # Reinstall dependencies
 pip install -e ".[dev]"
