@@ -330,19 +330,6 @@ ruff check src tests
 mypy src
 ```
 
-### Testing Philosophy
-
-The project follows Test-Driven Development (TDD):
-- **73 tests** covering all major functionality
-- **64% overall coverage** with high coverage in core modules:
-  - exceptions.py: 100%
-  - parser.py: 84%
-  - formatter.py: 84%
-  - catalog.py: 81%
-  - extractor.py: 64%
-- Tests for error conditions and edge cases
-- Integration tests with real Perseus texts
-
 ## Error Handling
 
 The tool provides clear, actionable error messages:
@@ -391,10 +378,6 @@ For works divided into books (e.g., Republic, Laws):
 - Book headers show title + Greek numeral: `ΠΟΛΙΤΕΙΑ Α`, `ΠΟΛΙΤΕΙΑ Β`
 - Automatic detection via TEI `<div type="textpart" subtype="book">`
 
-### Accent Removal
-
-Greek text in uppercase (titles, headers, scriptio continua) uses Unicode NFD normalization to strip accents, following standard epigraphic convention.
-
 ### Work ID Format
 
 Perseus TLG format: `tlg####.tlg###`
@@ -439,32 +422,3 @@ git clone https://github.com/PerseusDL/canonical-greekLit.git
 # Reinstall dependencies
 pip install -e ".[dev]"
 ```
-
-## License
-
-Based on texts from the Perseus Digital Library.
-
-Perseus texts are licensed under Creative Commons Attribution-ShareAlike 4.0 International License.
-
-This tool is provided as-is for educational and research purposes.
-
-## Credits
-
-- **Perseus Digital Library** - TEI XML source texts
-- **Henri Estienne (Stephanus)** - 1578 edition establishing pagination standard
-- Developed using Test-Driven Development methodology
-
-## Contributing
-
-When adding new features:
-1. Write tests first (TDD)
-2. Ensure all tests pass
-3. Maintain or improve code coverage
-4. Update documentation
-5. Run code quality tools (black, ruff)
-
-## References
-
-- [Perseus Digital Library](http://www.perseus.tufts.edu/)
-- [TEI P5 Guidelines](https://tei-c.org/release/doc/tei-p5-doc/en/html/)
-- [Thesaurus Linguae Graecae (TLG)](http://stephanus.tlg.uci.edu/)
